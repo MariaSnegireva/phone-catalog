@@ -52,7 +52,7 @@ A "Not Found" page for handling invalid URLs, redirecting users to the home page
 Specific states, such as "Phone not found," are implemented to handle various scenarios gracefully.
 The "React Phone Catalog" app provides a user-friendly interface for exploring and managing products in the catalog, with attention to detail in terms of design, functionality, and user experience.
 
-#### [DEMO LINK](https://github.com/MariaSnegireva/phone-catalog)
+#### [DEMO LINK](https://mariasnegireva.github.io/phone-catalog/)
 
 #### [LinkedIn LINK](https://www.linkedin.com/in/mariasnegireva/)
 
