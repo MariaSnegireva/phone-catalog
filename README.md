@@ -56,7 +56,7 @@ The "React Phone Catalog" app provides a user-friendly interface for exploring a
 
 #### [LinkedIn LINK](https://www.linkedin.com/in/mariasnegireva/)
 
-#### [Figma Design](https://www.figma.com/file/uEetgWenSRxk9jgiym6Yzp/Phone-catalog-redesign?type=design&node-id=14-49&mode=design&t=hubLt6D4F2f60Q2O-0)
+#### [Figma Design](https://www.figma.com/file/T5ttF21UnT6RRmCQQaZc6L/Phone-catalog-(V2)-Original?type=design&node-id=15885-6068&mode=design&t=5NB12Oxj2tHbjIbI-0)
 
 #### Used
 
