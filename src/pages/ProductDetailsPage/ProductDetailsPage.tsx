@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useContext, useState, useEffect } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { ProductDetails } from '../../types/ProductDetails';
 import { StateStore } from '../../store/StoreContext';
@@ -25,10 +25,15 @@ export const ProductDetailsPage = () => {
   const [mounted, setMounted] = useState(true);
   const { products, handleAction, isError } = useContext(StateStore);
   const [selectedImage, setSelectedImage] = useState('');
+  const navigate = useNavigate();
 
   const productFromStorage = products.find(item => item.itemId === productId);
 
   const paths = pathname.slice(1).split('/');
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const suggestedProducts = getSuggestedProducts(products, productId);
 
@@ -128,6 +133,7 @@ export const ProductDetailsPage = () => {
                   to=".."
                   className="productDetailsPage__navigation--link"
                   data-cy="backButton"
+                  onClick={goBack}
                 >
                   <img src={ICONS.arrowLeft} alt="Arrow back" />
                   <p className="smallText productDetailsPage__navigation--link--text">

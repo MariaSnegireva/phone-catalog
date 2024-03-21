@@ -54,7 +54,7 @@ export const ProductsSlider: React.FC<Props> = ({
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (!touchStartXRef.current) return;
     const touchMoveX = e.touches[0].clientX;
-    const diff = touchStartXRef.current - touchMoveX;
+    const diff = touchMoveX - touchStartXRef.current;
     setTranslate(prevTranslate => prevTranslate - diff);
     touchStartXRef.current = touchMoveX;
   };
