@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { ICONS } from '../../images/icons/icons';
 import { StateStore } from '../../store/StoreContext';
 import './PagesMenu.scss';
@@ -10,9 +10,22 @@ import {
 
 export const PagesMenu = () => {
   const { products } = useContext(StateStore);
+  const navigate = useNavigate();
 
   const favourites = products.filter(item => item.addedToFavourites === true);
   const carts = products.filter(item => item.addedToCart === true);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      navigate(-1);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [navigate]);
 
   return (
     <div className="pageMenu">

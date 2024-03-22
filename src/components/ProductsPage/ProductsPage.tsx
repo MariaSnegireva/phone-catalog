@@ -46,10 +46,11 @@ export const ProductsPage: React.FC<Props> = ({
 
   useEffect(() => {
     const handlePopState = () => {
-      const pathWithoutQuery = pathname.split('?')[0]; // Remove query parameters
-      if (pathWithoutQuery !== '/') {
-        navigate('/');
-      }
+      // const pathWithoutQuery = pathname.split('?')[0]; // Remove query parameters
+      // if (pathWithoutQuery !== '/') {
+      //   navigate('/');
+      // }
+      navigate(-1);
     };
 
     window.addEventListener('popstate', handlePopState);
