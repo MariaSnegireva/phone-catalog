@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { UpgratedProduct } from '../../types/UpgratedProduct';
 import { ICONS } from '../../images/icons/icons';
@@ -20,16 +20,41 @@ export const ProductsSlider: React.FC<Props> = ({
   products,
 }) => {
   const [translate, setTranslate] = useState(0);
-  const sliderWidth = CART_BLOCK * products.length - CART_BLOCK * 4;
+  // const sliderWidth = CART_BLOCK * products.length - CART_BLOCK * 4;
+  const [isMobile, setIsMobile] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const touchStartXRef = useRef<number | null>(null);
 
-  const stepRight = sliderWidth > translate + CART_BLOCK * 4
-    ? CART_BLOCK * 4
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 639);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const CART_BLOCK_MOBILE = CART_BLOCK * 1;
+
+  const sliderWidth = CART_BLOCK * products.length - (isMobile ? CART_BLOCK_MOBILE : CART_BLOCK * 4);
+
+  // const stepRight = sliderWidth > translate + CART_BLOCK * 4
+  //   ? CART_BLOCK * 4
+  //   : sliderWidth - translate;
+
+  // const stepLeft = translate - CART_BLOCK * 4 > 0
+  //   ? CART_BLOCK * 4
+  //   : translate;
+
+  const stepRight = sliderWidth > translate + (isMobile ? CART_BLOCK_MOBILE : CART_BLOCK * 4) 
+    ? (isMobile ? CART_BLOCK_MOBILE : CART_BLOCK * 4) 
     : sliderWidth - translate;
 
-  const stepLeft = translate - CART_BLOCK * 4 > 0
-    ? CART_BLOCK * 4
+  const stepLeft = translate - (isMobile ? CART_BLOCK_MOBILE : CART_BLOCK * 4) > 0
+    ? (isMobile ? CART_BLOCK_MOBILE : CART_BLOCK * 4) 
     : translate;
 
   const translateStyle = {
