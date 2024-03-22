@@ -16,7 +16,7 @@ import './Header.scss';
 import { getLinkLogoClass } from '../../helpers/getLinkClass';
 
 export const Header = () => {
-  const { products } = useContext(StateStore);
+  const { products, totalCartQuantity } = useContext(StateStore);
   const { pathname } = useLocation();
   const [query, setQuery] = useState('');
   const [isQuery, setIsQuery] = useState(false);
@@ -212,7 +212,7 @@ export const Header = () => {
             {
               !!carts.length && (
                 <div className="header__right-side__icon__counter">
-                  {carts.length}
+                  {totalCartQuantity}
                 </div>
               )
             }

@@ -21,6 +21,7 @@ type Store = {
   products: UpgratedProduct[],
   localStorage: UpgratedProduct[],
   handleAction: (product: UpgratedProduct, action: Action) => void,
+  totalCartQuantity: number,
   isError: boolean,
   isLoading: boolean,
 };
@@ -28,7 +29,8 @@ type Store = {
 const initialStore: Store = {
   products: [],
   localStorage: [],
-  handleAction: () => { },
+  handleAction: () => {},
+  totalCartQuantity: 0,
   isError: false,
   isLoading: false,
 };
@@ -40,6 +42,7 @@ export const StoreContext: React.FC<Props> = ({ children }) => {
   const [localStorage, setLocalStorage] = useLocalStorage<UpgratedProduct[]>('products', []);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [totalCartQuantity, setTotalCartQuantity] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
@@ -63,6 +66,12 @@ export const StoreContext: React.FC<Props> = ({ children }) => {
       .finally(() => setIsLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const cartProducts = products.filter(product => product.addedToCart);
+    const totalQuantity = cartProducts.reduce((total, product) => total + product.quantity, 0);
+    setTotalCartQuantity(totalQuantity);
+  }, [products]);
 
   const handleAction = (product: UpgratedProduct, action: Action) => {
     const newProducts = [...products];
@@ -125,6 +134,7 @@ export const StoreContext: React.FC<Props> = ({ children }) => {
     products,
     localStorage,
     handleAction,
+    totalCartQuantity,
     isError,
     isLoading,
   };
