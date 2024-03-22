@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { UpgratedProduct } from '../../types/UpgratedProduct';
 import { getTrimmedProducts } from '../../helpers/getTrimmedProducts';
 import { ItemsOnPage } from '../../types/ItemsOnPage';
@@ -23,6 +23,7 @@ export const ProductsPage: React.FC<Props> = ({
 }) => {
   const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const sortBy = searchParams.get('sort') || 'age';
   const itemsOnPage = searchParams.get('perPage') || '8';
   const query = searchParams.get('query') || '';
@@ -42,6 +43,21 @@ export const ProductsPage: React.FC<Props> = ({
     setSearchParams(searchParams);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, itemsOnPage]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const pathWithoutQuery = pathname.split('?')[0]; // Remove query parameters
+      if (pathWithoutQuery !== '/') {
+        navigate('/');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [pathname, navigate]);
 
   const navigationPath = pathname.slice(1);
 
