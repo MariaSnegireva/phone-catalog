@@ -9,7 +9,7 @@ import {
 } from '../../helpers/getLinkClass';
 
 export const PagesMenu = () => {
-  const { products } = useContext(StateStore);
+  const { products, totalCartQuantity } = useContext(StateStore);
   const navigate = useNavigate();
 
   const favourites = products.filter(item => item.addedToFavourites === true);
@@ -101,7 +101,7 @@ export const PagesMenu = () => {
             {
               !!carts.length && (
                 <div className="pageMenu__bottom__icon__counter">
-                  {carts.length}
+                  {totalCartQuantity}
                 </div>
               )
             }

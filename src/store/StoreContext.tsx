@@ -5,6 +5,7 @@ import { UpgratedProduct } from '../types/UpgratedProduct';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { getProducts } from '../api/products';
 import { Product } from '../types/Product';
+import { useLocation } from 'react-router-dom';
 
 type Props = {
   children: React.ReactNode;
@@ -24,6 +25,7 @@ type Store = {
   totalCartQuantity: number,
   isError: boolean,
   isLoading: boolean,
+  pathname: string,
 };
 
 const initialStore: Store = {
@@ -33,6 +35,7 @@ const initialStore: Store = {
   totalCartQuantity: 0,
   isError: false,
   isLoading: false,
+  pathname: '',
 };
 
 export const StateStore = React.createContext(initialStore);
@@ -43,6 +46,7 @@ export const StoreContext: React.FC<Props> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [totalCartQuantity, setTotalCartQuantity] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     setIsLoading(true);
@@ -137,6 +141,7 @@ export const StoreContext: React.FC<Props> = ({ children }) => {
     totalCartQuantity,
     isError,
     isLoading,
+    pathname: location.pathname,
   };
 
   return (

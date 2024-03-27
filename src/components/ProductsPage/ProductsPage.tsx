@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { UpgratedProduct } from '../../types/UpgratedProduct';
 import { getTrimmedProducts } from '../../helpers/getTrimmedProducts';
 import { ItemsOnPage } from '../../types/ItemsOnPage';
@@ -23,7 +23,6 @@ export const ProductsPage: React.FC<Props> = ({
 }) => {
   const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
   const sortBy = searchParams.get('sort') || 'age';
   const itemsOnPage = searchParams.get('perPage') || '8';
   const query = searchParams.get('query') || '';
@@ -44,21 +43,18 @@ export const ProductsPage: React.FC<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, itemsOnPage]);
 
-  useEffect(() => {
-    const handlePopState = () => {
-      // const pathWithoutQuery = pathname.split('?')[0]; // Remove query parameters
-      // if (pathWithoutQuery !== '/') {
-      //   navigate('/');
-      // }
-      navigate(-1);
-    };
+  // useEffect(() => {
+  //   const handlePopState = () => {
+  //     window.history.back();
+  //   };
 
-    window.addEventListener('popstate', handlePopState);
+  //   window.addEventListener('popstate', handlePopState);
 
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-    };
-  }, [pathname, navigate]);
+  //   return () => {
+  //     window.removeEventListener('popstate', handlePopState);
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const navigationPath = pathname.slice(1);
 
@@ -92,15 +88,18 @@ export const ProductsPage: React.FC<Props> = ({
         </p>
       </section>
 
-      <section className="productsPage__content">
-        <div className="productsPage__content--sort">
-          <SortByDropdown />
-          <DropdownItemsOnPage />
-        </div>
-        <div className="productsPage__content--table" data-cy="productList">
-          <ProductsList products={trimmedProducts} />
-        </div>
-      </section>
+      {products.length === 0
+        ? null
+        : (<section className="productsPage__content">
+          <div className="productsPage__content--sort">
+            <SortByDropdown />
+            <DropdownItemsOnPage />
+          </div>
+          <div className="productsPage__content--table" data-cy="productList">
+            <ProductsList products={trimmedProducts} />
+          </div>
+        </section>)
+      }
 
       {paginationCounter > 1 && (
         <Pagination

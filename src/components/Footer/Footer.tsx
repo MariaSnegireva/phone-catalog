@@ -5,7 +5,7 @@ import { ICONS } from '../../images/icons/icons';
 export const Footer = () => {
   const { pathname } = useLocation();
   const handleScrollToTop = () => {
-    window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   if (pathname === '/menu') {

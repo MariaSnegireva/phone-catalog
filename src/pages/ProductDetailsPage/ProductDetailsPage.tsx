@@ -200,9 +200,15 @@ export const ProductDetailsPage = () => {
                       <div className="productDetailsPage__content--info">
                         <div className="productDetailsPage__content--info__colors--container">
                           <section className="productDetailsPage__content--info__colors">
-                            <p className="smallText productDetailsPage__content--info__colors--text">
-                              Available colors
-                            </p>
+                            <div className="productDetailsPage__content--id">
+                              <p className="smallText productDetailsPage__content--info__colors--text">
+                                Available colors
+                              </p>
+                            
+                              <p className="smallText productDetailsPage__content--id--text">
+                                {`ID: ${productFromStorage.id}`}
+                              </p>
+                            </div>
                             <div className="productDetailsPage__content--info__colors--available">
                               {product.colorsAvailable.map(color => {
                                 const colorPath = pathname.split('-');
@@ -229,11 +235,6 @@ export const ProductDetailsPage = () => {
                               })}
                             </div>
                           </section>
-                          <div className="productDetailsPage__content--id--mobile">
-                            <p className="smallText productDetailsPage__content--id--text">
-                              {`ID: ${productFromStorage.id}`}
-                            </p>
-                          </div>
                         </div>
                         <div className="productDetailsPage__content--info__line" />
                         <section className="productDetailsPage__content--info__capacity">
@@ -362,11 +363,9 @@ export const ProductDetailsPage = () => {
                           </div>
                         </section>
                       </div>
-                      <div className="productDetailsPage__content--id">
-                        <p className="smallText productDetailsPage__content--id--text">
-                          {`ID: ${productFromStorage.id}`}
-                        </p>
-                      </div>
+                      <p className="smallText productDetailsPage__content--id--text--desc">
+                        {`ID: ${productFromStorage.id}`}
+                      </p>
                     </div>
                     <div className="productDetailsPage__content__main__description">
                       <section

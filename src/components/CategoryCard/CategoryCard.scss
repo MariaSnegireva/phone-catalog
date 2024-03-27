@@ -15,10 +15,14 @@
     height: 100%;
 
     @include onTablet {
-      width: 368px;
-      height: 368px;
+      width: 187px;
+      width: 187px;
     }
-
+    
+    @include onDesktop {
+      width: 368px;
+      width: 368px;
+    }
 
     transition: transform $effect-duration;
 

@@ -5,7 +5,6 @@ import {
 import debounce from 'lodash.debounce';
 import {
   NavLink,
-  useLocation,
   useNavigate,
   useSearchParams,
 } from 'react-router-dom';
@@ -16,8 +15,7 @@ import './Header.scss';
 import { getLinkLogoClass } from '../../helpers/getLinkClass';
 
 export const Header = () => {
-  const { products, totalCartQuantity } = useContext(StateStore);
-  const { pathname } = useLocation();
+  const { products, totalCartQuantity, pathname } = useContext(StateStore);
   const [query, setQuery] = useState('');
   const [isQuery, setIsQuery] = useState(false);
   const [placeholder, setPlaceholder] = useState('');
@@ -46,6 +44,7 @@ export const Header = () => {
   };
 
   useEffect(() => {
+  if (products.length !== 0) {
     switch (pathname) {
       case '/phones':
         setIsQuery(true);
@@ -71,10 +70,11 @@ export const Header = () => {
         setIsQuery(false);
         setPlaceholder('');
     }
+  }
 
     setQuery(searchParams.get('query') || '');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  }, [pathname, products, searchParams]);
 
   const favourites = products.filter(item => item.addedToFavourites === true);
   const carts = products.filter(item => item.addedToCart === true);

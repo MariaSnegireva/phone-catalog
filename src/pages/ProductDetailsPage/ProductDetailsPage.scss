@@ -141,7 +141,7 @@
         &--about {
           display: flex;
           flex-direction: column;
-          width: 287px;
+          // width: 287px;
           gap: 32px;
 
           @include onTablet {
@@ -178,10 +178,11 @@
         }
 
         &--specs {
-          width: 288px;
+          width: 100%;
           display: flex;
           flex-direction: column;
           gap: 32px;
+          margin-bottom: 24px;
 
           @include onTablet {
             width: 592px;
@@ -222,7 +223,6 @@
         }
 
         &--line {
-          width: 100%;
           height: 1px;
           background-color: $color-elements;
         }
@@ -246,6 +246,7 @@
     &--mobile {
       display: flex;
       flex-direction: row;
+      justify-content: center;
       gap: 8px;
       margin-bottom: 40px;
 
@@ -272,8 +273,8 @@
       }
 
       &--image {
-        width: 49px;
-        height: 49px;
+        width: 38px;
+        height: 38px;
         object-fit: contain;
 
         @include onTablet {
@@ -314,7 +315,7 @@
       }
 
       @include onDesktop {
-        width: 100%;
+        width: 320px;
       }
 
       &__colors {
@@ -498,22 +499,33 @@
       }
 
       &__line {
-        width: 320px;
         height: 1px;
         background-color: $color-elements;
       }
     }
 
     &--id {
-      display: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
 
-      @include onTablet {
-        display: flex;
+      &--text {
+        @include onDesktop {
+          display:none;
+        }
+
+        &--desc{
+          display: none;
+
+          @include onDesktop {
+            display: flex;
+            width: 176px;
+            justify-content: flex-end;
+          }
+        }
       }
 
-      @include onDesktop {
-        margin-left: 145px;
-      }
+
 
     &--mobile {
       display: flex;
