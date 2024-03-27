@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.3805c8f1.css",
-    "main.js": "./static/js/main.ba14550c.js",
+    "main.css": "./static/css/main.cfa6a11c.css",
+    "main.js": "./static/js/main.3f403253.js",
     "static/media/category-tablets.svg": "./static/media/category-tablets.528ae87df1a93cdb1339a5219e05e11c.svg",
     "static/media/category-phones.svg": "./static/media/category-phones.ddda3cd251982b6d32b98ad3c8515348.svg",
     "static/media/category-accessories.svg": "./static/media/category-accessories.00db5b84b443d3cb1ab06f0eefb94dda.svg",
@@ -26,11 +26,11 @@
     "static/media/arrowUpDisabled.svg": "./static/media/arrowUpDisabled.bca5376b1db38a7323e969ebeb063e2d.svg",
     "static/media/arrowLeftDisabled.svg": "./static/media/arrowLeftDisabled.7460d67936be8c4491a8997e5e905650.svg",
     "static/media/minus.svg": "./static/media/minus.bdf110d3a1bd224c8a8212b6767e010c.svg",
-    "main.3805c8f1.css.map": "./static/css/main.3805c8f1.css.map",
-    "main.ba14550c.js.map": "./static/js/main.ba14550c.js.map"
+    "main.cfa6a11c.css.map": "./static/css/main.cfa6a11c.css.map",
+    "main.3f403253.js.map": "./static/js/main.3f403253.js.map"
   },
   "entrypoints": [
-    "static/css/main.3805c8f1.css",
-    "static/js/main.ba14550c.js"
+    "static/css/main.cfa6a11c.css",
+    "static/js/main.3f403253.js"
   ]
 }
